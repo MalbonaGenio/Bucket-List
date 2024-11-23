@@ -50,7 +50,13 @@ struct ContentView: View {
             }
             .sheet(item: $selectedPlace) { place in
                 //Once it runs in will unwrap the optional Location object if any, then show the view with that data. Once dissmissed it will return nil again.
-                Text(place.name)
+                //LocationEditView takes a onSave: (Location) -> Void parameter. It will return the selected place once the Save button is pressed. To update the location we search the locations array for the index matching the place and put the newLocation in there.
+                LocationEditView(location: place) { newLocation in
+                    if let index = locations.firstIndex(of: place) {
+                        //This places the newLocation with the data passed from the LocationEditView into the index matching that place.
+                        locations[index] = newLocation
+                    }
+                }
             }
         }
     }

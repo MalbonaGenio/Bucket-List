@@ -9,7 +9,8 @@ import Foundation
 import MapKit
 
 struct Location: Codable, Equatable, Identifiable {
-    let id: UUID
+    //id needs to be var as we have a custon equatable function to only compare the id of locations, once a change has been to location we asing new id to trigger saving and update of that location.
+    var id: UUID
     var name: String
     var description: String
     var latitude: Double
